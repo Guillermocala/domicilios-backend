@@ -35,5 +35,62 @@ public class Solicitante {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
+
+	public Solicitante(Long id, String nombre, String direccion, Long cel, String hora, Domicilio domicilio) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.direccion = direccion;
+		this.cel = cel;
+		this.hora = hora;
+		this.domicilio = domicilio;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getDireccion() {
+		return direccion;
+	}
+
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
+
+	public Long getCel() {
+		return cel;
+	}
+
+	public void setCel(Long cel) {
+		this.cel = cel;
+	}
+
+	public String getHora() {
+		return hora;
+	}
+
+	public void setHora(String hora) {
+		this.hora = hora;
+	}
+
+	public Domicilio getDomicilio() {
+		return domicilio;
+	}
+
+	public void setDomicilio(Domicilio domicilio) {
+		this.domicilio = domicilio;
+	}
 }

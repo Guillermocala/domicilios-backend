@@ -20,12 +20,10 @@ public class Domicilio {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	//one to one
 	@OneToOne
 	@JoinColumn(name = "idSolicitante", updatable = false, nullable = false)
 	private Solicitante solicitante;
 	
-	//one to one
 	@OneToOne
 	@JoinColumn(name = "idDestinatario", updatable = false, nullable = false)
 	private Destinatario destinatario;
@@ -33,7 +31,6 @@ public class Domicilio {
 	@Column
 	private String descripcionPaquete;
 	
-	//many to one
 	@ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Mensajero mensajero;
 	
