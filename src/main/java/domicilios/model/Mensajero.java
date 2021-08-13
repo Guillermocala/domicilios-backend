@@ -91,4 +91,10 @@ public class Mensajero {
 	public void setPlaca(String placa) {
 		this.placa = placa;
 	}
+
+	@Override
+	public String toString() {
+		return "Mensajero [id=" + id + ", nombre=" + nombre + ", direccion=" + direccion + ", cel=" + cel + ", cedula="
+				+ cedula + ", placa=" + placa + "]";
+	}
 }

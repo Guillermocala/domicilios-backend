@@ -66,8 +66,8 @@ public class DomicilioController {
 		Optional<Domicilio> datosDomicilio= domicilioRep.findById(id);
 		if (datosDomicilio.isPresent()) {
 			Domicilio domicilio = datosDomicilio.get();
-			domicilio.setSolicitante(p.getSolicitante());
-			domicilio.setDestinatario(p.getDestinatario());
+			//domicilio.setSolicitante(p.getSolicitante());
+			//domicilio.setDestinatario(p.getDestinatario());
 			domicilio.setDescripcionPaquete(p.getDescripcionPaquete());
 			domicilio.setMensajero(p.getMensajero());
 			domicilio.setEstado(p.isEstado());

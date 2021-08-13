@@ -12,9 +12,21 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import domicilios.repository.DestinatarioRepository;
+import domicilios.repository.DomicilioRepository;
+import domicilios.repository.SolicitanteRepository;
+
 @Entity
 @Table(name = "Domicilios")
 public class Domicilio {
+	
+	@Autowired
+	private SolicitanteRepository solicitanteRep;
+	
+	@Autowired
+	private DestinatarioRepository destinatarioRep;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,7 +58,9 @@ public class Domicilio {
 			Mensajero mensajero, boolean estado) {
 		super();
 		this.id = id;
+		solicitanteRep.save(solicitante);
 		this.solicitante = solicitante;
+		destinatarioRep.save(destinatario);
 		this.destinatario = destinatario;
 		this.descripcionPaquete = descripcionPaquete;
 		this.mensajero = mensajero;
@@ -99,5 +113,12 @@ public class Domicilio {
 
 	public void setEstado(boolean estado) {
 		this.estado = estado;
+	}
+
+	@Override
+	public String toString() {
+		return "Domicilio [id=" + id + ", solicitante=" + solicitante + ", destinatario=" + destinatario
+				+ ", descripcionPaquete=" + descripcionPaquete + ", mensajero=" + mensajero + ", estado=" + estado
+				+ "]";
 	}
 }

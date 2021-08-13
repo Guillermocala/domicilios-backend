@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "Solicitantes")
 public class Solicitante {
@@ -28,6 +30,7 @@ public class Solicitante {
 	@Column
 	private String hora;
 	
+	@JsonIgnore
 	@OneToOne(mappedBy = "solicitante", cascade = CascadeType.ALL)
 	private Domicilio domicilio;
 
@@ -99,5 +102,4 @@ public class Solicitante {
 		return "Solicitante [id=" + id + ", nombre=" + nombre + ", direccion=" + direccion + ", cel=" + cel + ", hora="
 				+ hora + ", domicilio=" + domicilio + "]";
 	}
-	
 }
