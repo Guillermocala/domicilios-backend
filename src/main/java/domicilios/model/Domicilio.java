@@ -7,38 +7,41 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
+
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+
 import javax.persistence.Table;
-
-import org.springframework.beans.factory.annotation.Autowired;
-
-import domicilios.repository.DestinatarioRepository;
-import domicilios.repository.DomicilioRepository;
-import domicilios.repository.SolicitanteRepository;
 
 @Entity
 @Table(name = "Domicilios")
 public class Domicilio {
-	
-	@Autowired
-	private SolicitanteRepository solicitanteRep;
-	
-	@Autowired
-	private DestinatarioRepository destinatarioRep;
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@OneToOne
-	@JoinColumn(name = "idSolicitante", updatable = false, nullable = false)
-	private Solicitante solicitante;
+	@Column
+	private String nombreSolicitante;
 	
-	@OneToOne
-	@JoinColumn(name = "idDestinatario", updatable = false, nullable = false)
-	private Destinatario destinatario;
+	@Column
+	private String dirSolicitante;
+	
+	@Column
+	private int celSolicitante;
+	
+	@Column
+	private String horaSolicitante;
+	
+	@Column
+	private String nombreDestinatario;
+	
+	@Column
+	private String dirDestinatario;
+	
+	@Column
+	private int celDestinatario;
+	
+	@Column
+	private String horaDestinatario;
 	
 	@Column
 	private String descripcionPaquete;
@@ -54,17 +57,21 @@ public class Domicilio {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Domicilio(Long id, Solicitante solicitante, Destinatario destinatario, String descripcionPaquete,
-			Mensajero mensajero, boolean estado) {
+	public Domicilio(Long id, String nombreSolicitante, String dirSolicitante, int celSolicitante,
+			String horaSolicitante, String nombreDestinatario, String dirDestinatario, int celDestinatario,
+			String descripcionPaquete, Mensajero mensajero) {
 		super();
 		this.id = id;
-		solicitanteRep.save(solicitante);
-		this.solicitante = solicitante;
-		destinatarioRep.save(destinatario);
-		this.destinatario = destinatario;
+		this.nombreSolicitante = nombreSolicitante;
+		this.dirSolicitante = dirSolicitante;
+		this.celSolicitante = celSolicitante;
+		this.horaSolicitante = horaSolicitante;
+		this.nombreDestinatario = nombreDestinatario;
+		this.dirDestinatario = dirDestinatario;
+		this.celDestinatario = celDestinatario;
 		this.descripcionPaquete = descripcionPaquete;
 		this.mensajero = mensajero;
-		this.estado = estado;
+		this.estado = true;
 	}
 
 	public Long getId() {
@@ -75,20 +82,68 @@ public class Domicilio {
 		this.id = id;
 	}
 
-	public Solicitante getSolicitante() {
-		return solicitante;
+	public String getNombreSolicitante() {
+		return nombreSolicitante;
 	}
 
-	public void setSolicitante(Solicitante solicitante) {
-		this.solicitante = solicitante;
+	public void setNombreSolicitante(String nombreSolicitante) {
+		this.nombreSolicitante = nombreSolicitante;
 	}
 
-	public Destinatario getDestinatario() {
-		return destinatario;
+	public String getDirSolicitante() {
+		return dirSolicitante;
 	}
 
-	public void setDestinatario(Destinatario destinatario) {
-		this.destinatario = destinatario;
+	public void setDirSolicitante(String dirSolicitante) {
+		this.dirSolicitante = dirSolicitante;
+	}
+
+	public int getCelSolicitante() {
+		return celSolicitante;
+	}
+
+	public void setCelSolicitante(int celSolicitante) {
+		this.celSolicitante = celSolicitante;
+	}
+
+	public String getHoraSolicitante() {
+		return horaSolicitante;
+	}
+
+	public void setHoraSolicitante(String horaSolicitante) {
+		this.horaSolicitante = horaSolicitante;
+	}
+
+	public String getNombreDestinatario() {
+		return nombreDestinatario;
+	}
+
+	public void setNombreDestinatario(String nombreDestinatario) {
+		this.nombreDestinatario = nombreDestinatario;
+	}
+
+	public String getDirDestinatario() {
+		return dirDestinatario;
+	}
+
+	public void setDirDestinatario(String dirDestinatario) {
+		this.dirDestinatario = dirDestinatario;
+	}
+
+	public int getCelDestinatario() {
+		return celDestinatario;
+	}
+
+	public void setCelDestinatario(int celDestinatario) {
+		this.celDestinatario = celDestinatario;
+	}
+
+	public String getHoraDestinatario() {
+		return horaDestinatario;
+	}
+
+	public void setHoraDestinatario(String horaDestinatario) {
+		this.horaDestinatario = horaDestinatario;
 	}
 
 	public String getDescripcionPaquete() {
@@ -114,11 +169,5 @@ public class Domicilio {
 	public void setEstado(boolean estado) {
 		this.estado = estado;
 	}
-
-	@Override
-	public String toString() {
-		return "Domicilio [id=" + id + ", solicitante=" + solicitante + ", destinatario=" + destinatario
-				+ ", descripcionPaquete=" + descripcionPaquete + ", mensajero=" + mensajero + ", estado=" + estado
-				+ "]";
-	}
+	
 }
