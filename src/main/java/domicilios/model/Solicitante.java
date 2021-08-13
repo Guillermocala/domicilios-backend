@@ -23,7 +23,7 @@ public class Solicitante {
 	private String direccion;
 	
 	@Column
-	private Long cel;
+	private int cel;
 	
 	@Column
 	private String hora;
@@ -36,7 +36,7 @@ public class Solicitante {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Solicitante(Long id, String nombre, String direccion, Long cel, String hora, Domicilio domicilio) {
+	public Solicitante(Long id, String nombre, String direccion, int cel, String hora, Domicilio domicilio) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -70,11 +70,11 @@ public class Solicitante {
 		this.direccion = direccion;
 	}
 
-	public Long getCel() {
+	public int getCel() {
 		return cel;
 	}
 
-	public void setCel(Long cel) {
+	public void setCel(int cel) {
 		this.cel = cel;
 	}
 
@@ -93,4 +93,11 @@ public class Solicitante {
 	public void setDomicilio(Domicilio domicilio) {
 		this.domicilio = domicilio;
 	}
+
+	@Override
+	public String toString() {
+		return "Solicitante [id=" + id + ", nombre=" + nombre + ", direccion=" + direccion + ", cel=" + cel + ", hora="
+				+ hora + ", domicilio=" + domicilio + "]";
+	}
+	
 }

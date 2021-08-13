@@ -21,10 +21,10 @@ public class Mensajero {
 	private String direccion;
 	
 	@Column
-	private Long cel;
+	private int cel;
 	
 	@Column
-	private Long cedula;
+	private int cedula;
 	
 	@Column
 	private String placa;
@@ -34,7 +34,7 @@ public class Mensajero {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Mensajero(Long id, String nombre, String direccion, Long cel, Long cedula, String placa) {
+	public Mensajero(Long id, String nombre, String direccion, int cel, int cedula, String placa) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -68,19 +68,19 @@ public class Mensajero {
 		this.direccion = direccion;
 	}
 
-	public Long getCel() {
+	public int getCel() {
 		return cel;
 	}
 
-	public void setCel(Long cel) {
+	public void setCel(int cel) {
 		this.cel = cel;
 	}
 
-	public Long getCedula() {
+	public int getCedula() {
 		return cedula;
 	}
 
-	public void setCedula(Long cedula) {
+	public void setCedula(int cedula) {
 		this.cedula = cedula;
 	}
 
