@@ -46,7 +46,7 @@ public class Domicilio {
 	@Column
 	private String descripcionPaquete;
 	
-	@ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Mensajero mensajero;
 	
 	@Column
@@ -59,7 +59,7 @@ public class Domicilio {
 
 	public Domicilio(Long id, String nombreSolicitante, String dirSolicitante, int celSolicitante,
 			String horaSolicitante, String nombreDestinatario, String dirDestinatario, int celDestinatario,
-			String descripcionPaquete, Mensajero mensajero) {
+			String horaDestinatario, String descripcionPaquete, Mensajero mensajero, boolean estado) {
 		super();
 		this.id = id;
 		this.nombreSolicitante = nombreSolicitante;
@@ -69,9 +69,10 @@ public class Domicilio {
 		this.nombreDestinatario = nombreDestinatario;
 		this.dirDestinatario = dirDestinatario;
 		this.celDestinatario = celDestinatario;
+		this.horaDestinatario = horaDestinatario;
 		this.descripcionPaquete = descripcionPaquete;
 		this.mensajero = mensajero;
-		this.estado = true;
+		this.estado = estado;
 	}
 
 	public Long getId() {

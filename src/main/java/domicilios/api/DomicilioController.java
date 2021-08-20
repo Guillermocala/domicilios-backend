@@ -21,7 +21,7 @@ import domicilios.repository.DomicilioRepository;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin(origins = {"http://localhost:8080", "http://localhost:3000"})
 public class DomicilioController {
 
 	
