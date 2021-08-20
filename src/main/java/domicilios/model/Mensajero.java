@@ -1,10 +1,13 @@
 package domicilios.model;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -28,13 +31,17 @@ public class Mensajero {
 	
 	@Column
 	private String placa;
+	
+	@OneToMany(mappedBy = "mensajero")
+	private Set<Domicilio> domicilio;
 
 	public Mensajero() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Mensajero(Long id, String nombre, String direccion, int cel, int cedula, String placa) {
+	public Mensajero(Long id, String nombre, String direccion, int cel, int cedula, String placa,
+			Set<Domicilio> domicilio) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -42,6 +49,7 @@ public class Mensajero {
 		this.cel = cel;
 		this.cedula = cedula;
 		this.placa = placa;
+		this.domicilio = domicilio;
 	}
 
 	public Long getId() {
@@ -92,9 +100,18 @@ public class Mensajero {
 		this.placa = placa;
 	}
 
+	public Set<Domicilio> getDomicilio() {
+		return domicilio;
+	}
+
+	public void setDomicilio(Set<Domicilio> domicilio) {
+		this.domicilio = domicilio;
+	}
+
 	@Override
 	public String toString() {
 		return "Mensajero [id=" + id + ", nombre=" + nombre + ", direccion=" + direccion + ", cel=" + cel + ", cedula="
-				+ cedula + ", placa=" + placa + "]";
+				+ cedula + ", placa=" + placa + ", domicilio=" + domicilio + "]";
 	}
+
 }
