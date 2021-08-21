@@ -49,10 +49,10 @@ public class MensajeroController {
 		}
 	}
 	
-	@PostMapping("/mensajeros")
-	public ResponseEntity<Mensajero> createMensajero(@RequestBody Mensajero p) {
+	@PostMapping("/mensajeros/addmensajero")
+	public ResponseEntity<Mensajero> createMensajero(@RequestBody Mensajero m) {
 		try {
-			Mensajero mensajero = mensajeroRep.save(p);
+			Mensajero mensajero = mensajeroRep.save(m);
 			return new ResponseEntity<>(mensajero, HttpStatus.CREATED);
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -60,16 +60,16 @@ public class MensajeroController {
 		}
 	}
 	
-	@PutMapping("/mensajeros/{id}")
-	public ResponseEntity<Mensajero> updateMensajero(@PathVariable("id") Long id, @RequestBody Mensajero p) {
+	@PutMapping("/mensajeros/editmensajero/{id}")
+	public ResponseEntity<Mensajero> updateMensajero(@PathVariable("id") Long id, @RequestBody Mensajero m) {
 		Optional<Mensajero> datosMensajero= mensajeroRep.findById(id);
 		if (datosMensajero.isPresent()) {
 			Mensajero mensajero = datosMensajero.get();
-			mensajero.setNombre(p.getNombre());
-			mensajero.setDireccion(p.getDireccion());
-			mensajero.setCel(p.getCel());
-			mensajero.setCedula(p.getCedula());
-			mensajero.setPlaca(p.getPlaca());
+			mensajero.setNombre(m.getNombre());
+			mensajero.setDireccion(m.getDireccion());
+			mensajero.setCel(m.getCel());
+			mensajero.setCedula(m.getCedula());
+			mensajero.setPlaca(m.getPlaca());
 			Mensajero nuevoMensajero = mensajeroRep.save(mensajero);
 			return new ResponseEntity<>(nuevoMensajero, HttpStatus.OK);
 		}

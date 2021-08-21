@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import domicilios.model.Domicilio;
+import domicilios.model.Mensajero;
 import domicilios.repository.DomicilioRepository;
+import domicilios.repository.MensajeroRepository;
 
 @RestController
 @RequestMapping("/api")
@@ -27,6 +29,9 @@ public class DomicilioController {
 	
 	@Autowired
 	private DomicilioRepository domicilioRep;
+	
+	@Autowired
+	private MensajeroRepository mensajeroRep;
 	
 	@GetMapping("/domicilios")
 	public ResponseEntity<List<Domicilio>> getAllDomicilios() {
@@ -50,32 +55,34 @@ public class DomicilioController {
 		}
 	}
 	
-	@PostMapping("/domicilios")
-	public ResponseEntity<Domicilio> createDomicilio(@RequestBody Domicilio p) {
-		try {
-			Domicilio domicilio = domicilioRep.save(p);
-			return new ResponseEntity<>(domicilio, HttpStatus.CREATED);
-		} catch (Exception e) {
-			// TODO: handle exception
-			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+	@PostMapping("/domicilios/adddomicilio/{id}")
+	public ResponseEntity<Domicilio> createDomicilio(@PathVariable("id") Long id, @RequestBody Domicilio d) {
+		Optional<Mensajero> mensajero = mensajeroRep.findById(id);
+		if (mensajero.isPresent()) {
+			d.setMensajero(mensajero.get());
+			Domicilio crearDomicilio = domicilioRep.save(d);
+			return new ResponseEntity<>(crearDomicilio, HttpStatus.CREATED);
+		}
+		else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
 	
-	@PutMapping("/domicilios/{id}")
-	public ResponseEntity<Domicilio> updateDomicilio(@PathVariable("id") Long id, @RequestBody Domicilio p) {
+	@PutMapping("/domicilios/editdomicilio/{id}")
+	public ResponseEntity<Domicilio> updateDomicilio(@PathVariable("id") Long id, @RequestBody Domicilio d) {
 		Optional<Domicilio> datosDomicilio= domicilioRep.findById(id);
 		if (datosDomicilio.isPresent()) {
 			Domicilio domicilio = datosDomicilio.get();
-			domicilio.setNombreSolicitante(p.getNombreSolicitante());
-			domicilio.setDirSolicitante(p.getDirSolicitante());
-			domicilio.setCelSolicitante(p.getCelSolicitante());
-			domicilio.setHoraSolicitante(p.getHoraSolicitante());
-			domicilio.setNombreDestinatario(p.getNombreDestinatario());
-			domicilio.setDirDestinatario(p.getDirDestinatario());
-			domicilio.setCelDestinatario(p.getCelDestinatario());
-			domicilio.setDescripcionPaquete(p.getDescripcionPaquete());
-			domicilio.setMensajero(p.getMensajero());
-			domicilio.setEstado(p.isEstado());
+			domicilio.setNombreSolicitante(d.getNombreSolicitante());
+			domicilio.setDirSolicitante(d.getDirSolicitante());
+			domicilio.setCelSolicitante(d.getCelSolicitante());
+			domicilio.setHoraSolicitante(d.getHoraSolicitante());
+			domicilio.setNombreDestinatario(d.getNombreDestinatario());
+			domicilio.setDirDestinatario(d.getDirDestinatario());
+			domicilio.setCelDestinatario(d.getCelDestinatario());
+			domicilio.setDescripcionPaquete(d.getDescripcionPaquete());
+			domicilio.setMensajero(d.getMensajero());
+			domicilio.setEstado(d.isEstado());
 			Domicilio nuevoDomicilio= domicilioRep.save(domicilio);
 			return new ResponseEntity<>(nuevoDomicilio, HttpStatus.OK);
 		}

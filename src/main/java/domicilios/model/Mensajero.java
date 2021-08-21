@@ -2,8 +2,10 @@ package domicilios.model;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -32,7 +34,7 @@ public class Mensajero {
 	@Column
 	private String placa;
 	
-	@OneToMany(mappedBy = "mensajero")
+	@OneToMany(mappedBy = "mensajero", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Set<Domicilio> domicilio;
 
 	public Mensajero() {
