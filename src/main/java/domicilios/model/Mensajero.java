@@ -34,7 +34,7 @@ public class Mensajero {
 	@Column
 	private String placa;
 	
-	@OneToMany(mappedBy = "mensajero", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "mensajero", fetch = FetchType.EAGER)
 	private Set<Domicilio> domicilio;
 
 	public Mensajero() {

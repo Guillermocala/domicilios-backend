@@ -48,7 +48,7 @@ public class Domicilio {
 	private String descripcionPaquete;
 	
 	@JsonIgnore
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "idMensajero")
 	private Mensajero mensajero;
 	
